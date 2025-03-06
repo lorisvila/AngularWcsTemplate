@@ -43,6 +43,14 @@
         <span class="">Accueil</span>
       </wcs-dropdown-item>
 
+      <wcs-dropdown-header>Auth</wcs-dropdown-header>
+
+      <wcs-dropdown-item (wcsDropdownItemClick)="this.router.navigate(dataService.appRoutes.Admin.Login)" class="flex-row">
+        <wcs-mat-icon icon="login"></wcs-mat-icon>
+        <span class="">Connect</span>
+      </wcs-dropdown-item>
+
+
     </wcs-dropdown>
   </div>
 </wcs-header>

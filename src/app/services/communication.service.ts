@@ -9,7 +9,7 @@ import {API_RequestType, API_ResponseType} from "../app.types";
 export class CommunicationService {
 
   // API Endpoint
-  API_Url: URL =  new URL(window.location.protocol + '//' + window.location.hostname + ':3000/');
+  API_Url: URL =  new URL(window.location.protocol + '//' + window.location.hostname + ':8000/');
   API_Version: string = '/v1'
 
   // API Token
