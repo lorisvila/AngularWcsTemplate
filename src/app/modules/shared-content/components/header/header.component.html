@@ -1,0 +1,17 @@
+<div class="flex-row flex-align-center">
+  <div class="flex-row flex-align-center flex-1">
+    @if (icon) {
+      <!--Icon-->
+      <wcs-mat-icon [icon]="icon"></wcs-mat-icon>
+    }
+    <h2>{{ title }}</h2>
+    <!--Header Content-->
+    <ng-content select="[content]"></ng-content>
+  </div>
+  @if (backIcon) {
+    <!--Icon back-->
+    <wcs-button shape="square" class="wcs-secondary" (click)="location.back()">
+      <wcs-mat-icon icon="arrow_back"></wcs-mat-icon>
+    </wcs-button>
+  }
+</div>

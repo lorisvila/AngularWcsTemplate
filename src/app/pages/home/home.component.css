@@ -1,0 +1,95 @@
+/* Page items*/
+#title {
+  margin: 1em 0 0.3em 0;
+}
+
+/*Content disposition*/
+#pageContainer {
+  display: grid;
+  grid-template-areas:
+    'searchBar searchBar'
+    'enginSearch enginSearch'
+    'raccourcis infos'
+  ;
+  grid-gap: 1em;
+}
+@media screen and (max-width: 630px) {
+  #title {
+    text-align: center;
+  }
+  #pageContainer {
+    margin: 0 0 0.5em 0;
+    grid-template-areas:
+    'searchBar '
+    'enginSearch'
+    'raccourcis'
+    'infos';
+    place-items: center;
+  }
+}
+#enginSearchCard {
+  grid-area: enginSearch;
+}
+#raccourcisCard {
+  grid-area: raccourcis;
+}
+#infosCard {
+  grid-area: infos;
+}
+#searchBar {
+  grid-area: searchBar;
+}
+
+/* Card common items*/
+.card {
+  padding: 1em;
+  width: 20em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.card > h3 {
+  margin: 0.1em 0 0.7em 0;
+}
+
+/*Engin picture*/
+#trainImage {
+  max-width: 100vw;
+  margin-bottom: 1.5em;
+}
+#blankEngin {
+  max-width: 55vw;
+  width: 55vw;
+  max-height: 10vh;
+  height: 10vh;
+  background-color: #e0f1f9;
+  border: 1.5px solid #0088ce;
+  margin-bottom: 1em;
+  border-radius: 3em 3em 1em 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+.trainWindow {
+  width: 7vw;
+  height: 6vh;
+  background-color: white;
+  border: 1.5px solid #0088ce;
+  border-radius: 0.25em;
+}
+
+/*Raccourcis card*/
+#raccourcisCard {
+  width: 20em;
+}
+.raccourcisLinkImage {
+  height: 1.2em;
+  padding-right: 0.5em;
+}
+.raccourciItem {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 100px;
+}

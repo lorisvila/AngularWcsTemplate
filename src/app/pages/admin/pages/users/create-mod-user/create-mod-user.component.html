@@ -1,0 +1,111 @@
+<div class="page-content">
+
+  <app-header [title]="(currentState$ | async) == 'add' ? 'Ajouter' : 'Editer' + ' un utilisateur'"
+              [icon]="(currentState$ | async) == 'add' ? 'person_add' : 'manage_accounts'">
+    @if ((currentState$ | async) == 'edit' && !editOriginalUser) {
+      <wcs-badge content class="wcs-danger">Utilisateur non trouvé</wcs-badge>
+    }
+  </app-header>
+
+  <div class="grid-2col grid-1fr-1fr">
+
+    <app-flat-card title="Informations générales" [showToggleButton]="true">
+      <div content class="flex-column">
+
+        <form [formGroup]="userCreateModForm">
+          <formly-form [form]="userCreateModForm" [fields]="userCreateModInfosFormFields" [model]="userCreateModFormModel"></formly-form>
+        </form>
+
+        @if ((currentState$ | async) == 'add') {
+          <wcs-progress-bar [value]="getPasswordStrenght.score"></wcs-progress-bar>
+        }
+
+      </div>
+    </app-flat-card>
+
+    <app-flat-card title="Rôles" [showToggleButton]="true">
+      <div content class="flex-column">
+
+        <form [formGroup]="userCreateModForm">
+          <formly-form [form]="userCreateModForm" [fields]="userCreateModRolesFormFields" [model]="userCreateModFormModel"></formly-form>
+        </form>
+
+      </div>
+    </app-flat-card>
+
+  </div>
+
+  <app-flat-card title="Résumé" icon="info" [showToggleButton]="true">
+
+    <div content class="grid-2col grid-1fr-2fr">
+
+      <span class="bold">Nom Complet</span>
+      <span>{{returnCurrentUser.fullname}}</span>
+
+      <span class="bold">Nom d'utilisateur</span>
+      <span>{{returnCurrentUser.username}}</span>
+
+      @if ((currentState$ | async) == 'add') {
+        <span class="bold">Complexité du mot de passe</span>
+        <span>{{getPasswordStrenght.message}}</span>
+      }
+
+      <span class="bold">Poste de l'utilisateur</span>
+      <span>{{returnCurrentUser.poste.poste}}</span>
+
+      <span class="bold">Rôles de l'utilisateur</span>
+      <div class="flex-row gap-05em">
+        @for (role of returnCurrentUser.roles; track role) {
+          <span class="code-text">{{role}}</span>
+        }
+      </div>
+
+      @if (((currentState$ | async) == 'edit' && editOriginalUser) || (currentState$ | async) == 'add') {
+        <wcs-button [disabled]="!formValid" (click)="submitUser()"
+                    style="grid-column: span 2">
+          <div class="flex-row gap-05em">
+            <wcs-mat-icon icon="person_add"></wcs-mat-icon>
+            @if ((currentState$ | async) == 'add') {
+              Créer l'utilisateur
+            }
+            @else {
+              Editeur l'utilisateur
+            }
+          </div>
+        </wcs-button>
+      }
+
+      @if ((currentState$ | async) == 'edit' && editOriginalUser) {
+        <wcs-button class="wcs-danger" style="grid-column: span 2" (click)="showCancelModal = true">
+          <div class="flex-row">
+            <wcs-mat-icon icon="delete"></wcs-mat-icon>
+            Supprimer l'utilisateur
+          </div>
+        </wcs-button>
+      }
+
+    </div>
+
+  </app-flat-card>
+
+</div>
+
+
+<wcs-modal [showCloseButton]="false" [show]="showCancelModal" size="m">
+  <div slot="header">Voulez-vous vraiment supprimer cet utilisateur ?</div>
+  <p>{{returnCurrentUser.username}} n'aura plus accès à son compte à l'issue...</p>
+  <div slot="actions" class="flex-row">
+    <wcs-button class="wcs-danger" (click)="deleteUser()">
+      <div class="flex-row">
+        <wcs-mat-icon icon="delete"></wcs-mat-icon>
+        Oui
+      </div>
+    </wcs-button>
+    <wcs-button (click)="showCancelModal = false">
+      <div class="flex-row">
+        <wcs-mat-icon icon="cancel"></wcs-mat-icon>
+        Non
+      </div>
+    </wcs-button>
+  </div>
+</wcs-modal>

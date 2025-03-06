@@ -1,0 +1,9 @@
+#tdb-grid {
+  display: grid;
+  grid-template-columns: 4fr 10fr;
+  column-gap: 1em;
+  row-gap: 1em;
+}
+h1 {
+  margin: 0.4em 0 0.2em 0;
+}

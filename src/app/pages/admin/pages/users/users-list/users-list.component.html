@@ -1,0 +1,64 @@
+<div class="page-content">
+
+  <app-header title="Liste des utilisateur" icon="person"></app-header>
+
+  <wcs-button (click)="adminUsersService.getUsers()" class="wcs-primary">
+    <div class="flex-row gap-05em">
+      <wcs-mat-icon icon="refresh"></wcs-mat-icon>
+      @if((adminUsersService.users$ | async)?.length == 0) {
+        Afficher les données
+      } @else {
+        Rafraîchir les données
+      }
+    </div>
+  </wcs-button>
+
+  @if((adminUsersService.users$ | async)?.length != 0) {
+
+    <div class="flex-column">
+
+      <app-flat-card title="Statistiques" icon="analytics" [showToggleButton]="true" [showCard]="false">
+        <div content class="grid-2col grid-1fr-2fr">
+
+          <span class="bold">Nombre d'utilisateurs</span>
+          <span>{{(adminUsersService.users$ | async)?.length}}</span>
+
+        </div>
+      </app-flat-card>
+
+      <app-flat-card title="Liste" [showToggleButton]="true" icon="groups">
+        <div content class="flex-column">
+
+          <wcs-grid [data]="(adminUsersService.users$ | async)" rowIdPath="username">
+            <wcs-grid-column path="fullname" name="Nom complet" sort=""></wcs-grid-column>
+            <wcs-grid-column path="username" name="Identifiant" sort=""></wcs-grid-column>
+            <wcs-grid-column path="poste.poste" name="Poste" sort=""></wcs-grid-column>
+            <wcs-grid-column name="Rôles perso." customCells="" id="customRoles"></wcs-grid-column>
+            <wcs-grid-column path="lastConnect" name="Dernière connexion"  sort="" [formatter]="dateFormatter"></wcs-grid-column>
+            <wcs-grid-column name="Editer" customCells="" id="editUserCell"></wcs-grid-column>
+
+            @for (user of (adminUsersService.users$ | async); track user.username) {
+              <wcs-grid-custom-cell columnId="editUserCell" [rowId]="user.username" class="flex-row flex-align-center flex-justify-center">
+                <wcs-button class="wcs-secondary" shape="round"
+                            (click)="router.navigate(dataService.appRoutes.Admin.Utilisateur.Editer,
+                             {queryParams: {username: user.username}})">
+                  <wcs-mat-icon icon="manage_accounts"></wcs-mat-icon>
+                </wcs-button>
+              </wcs-grid-custom-cell>
+
+              <wcs-grid-custom-cell columnId="customRoles" [rowId]="user.username" class="flex-row flex-align-center flex-justify-center">
+                <wcs-badge [class]="user.customRoles ? 'wcs-warning' : 'wcs-secondary'">{{ user.customRoles ? 'Oui' : 'Non'}}</wcs-badge>
+              </wcs-grid-custom-cell>
+            }
+
+          </wcs-grid>
+
+        </div>
+
+      </app-flat-card>
+
+    </div>
+
+  }
+
+</div>

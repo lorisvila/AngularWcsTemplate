@@ -1,0 +1,19 @@
+h3 {
+  margin: 0;
+}
+#header {
+  display: flex;
+  flex-flow: row nowrap;
+  align-content: center;
+  width: 100%;
+  gap: 1em;
+}
+#header > h3 {
+  margin: 0;
+  flex: 1;
+  align-content: center;
+}s
+#header > div {
+  flex: 1;
+  align-content: center;
+}

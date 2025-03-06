@@ -1,0 +1,27 @@
+<wcs-card mode="flat">
+  <wcs-card-body class="card-header" [style]="allowToggle ? 'cursor: pointer' : ''">
+    <div id="header" (click)="toggleShowCard()">
+      @if (icon) {
+        <wcs-mat-icon [icon]="icon" ></wcs-mat-icon>
+      }
+      @if (title) {
+        <h3>{{title}}</h3>
+      } @else {
+        <div>
+          <ng-content select="[header]"></ng-content>
+        </div>
+      }
+      @if (showToggleButton) {
+        <wcs-button shape="square" size="s">
+          <wcs-mat-icon [icon]="showCard ? 'collapse_content' : 'expand_content'"></wcs-mat-icon>
+        </wcs-button>
+      }
+    </div>
+  </wcs-card-body>
+  <div [@slideInOut]="showCard ? 'expanded' : 'collapsed'">
+    <wcs-divider></wcs-divider>
+    <wcs-card-body class="card-content">
+      <ng-content select="[content]"></ng-content>
+    </wcs-card-body>
+  </div>
+</wcs-card>

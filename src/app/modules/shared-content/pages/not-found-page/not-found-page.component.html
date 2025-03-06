@@ -1,0 +1,20 @@
+<div class="page-content gap-1em">
+
+  <wcs-mat-icon icon="warning" size="l"></wcs-mat-icon>
+  <h1>Aïe, cette page n'existe pas</h1>
+
+  <wcs-button class="wcs-primary" (click)="location.back()">
+    <div class="flex-row gap-05em">
+      <wcs-mat-icon icon="arrow_back"></wcs-mat-icon>
+      Retour en arrière
+    </div>
+  </wcs-button>
+
+  <wcs-button class="wcs-warning" (click)="router.navigate(dataService.appRoutes.Accueil)">
+    <div class="flex-row gap-05em">
+      <wcs-mat-icon icon="home"></wcs-mat-icon>
+      Retour à l'accueil
+    </div>
+  </wcs-button>
+
+</div>

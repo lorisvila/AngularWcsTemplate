@@ -1,0 +1,9 @@
+<div class="flex-column form-container">
+  <h1>Connexion</h1>
+  <form [formGroup]="form" class="columnForm">
+    <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+    <wcs-button type="submit">Se connecter</wcs-button>
+
+    <p>Ce site n'est pas connecté au SI SNCF, ne pas utiliser ses identifiants SNCF pour s'authentifier.</p>
+  </form>
+</div>

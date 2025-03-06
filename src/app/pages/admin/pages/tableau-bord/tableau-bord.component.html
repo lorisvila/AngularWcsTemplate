@@ -1,0 +1,58 @@
+<div class="page-content">
+
+  <h1>👋🏻 Bienvenue {{authService.userObject?.fullname}}</h1>
+
+  <div id="tdb-grid">
+
+    <!--Colonne de gauche (Informations annexes)-->
+    <div class="flex-column">
+
+      <app-flat-card title="Utilisateur" icon="person" [allowToggle]="false" [showToggleButton]="false">
+        <div content class="grid-2col grid-1fr-2fr">
+          <wcs-button style="grid-column: span 2" mode="stroked">Changer son mot de passe</wcs-button>
+
+          <span class="bold">Nom</span>
+          <span>{{authService.userObject?.fullname}}</span>
+
+          <span class="bold">Identifiant</span>
+          <span>{{authService.userObject?.username}}</span>
+
+          <span class="bold">Poste</span>
+          <span>{{authService.userObject?.poste?.poste}}</span>
+
+          <span class="bold">Rôles</span>
+          <div class="flex-row gap-05em">
+              @for (role of authService.userObject?.roles; track role) {
+                <span class="code-text">{{role}}</span>
+              }
+          </div>
+
+          <span class="bold">Dernière connexion</span>
+          <span>{{authService.userObject?.lastConnect | date:"dd'/'MM'/'yyyy 'à' HH:mm"}}</span>
+        </div>
+      </app-flat-card>
+
+    </div>
+
+    <!--Colonne droite (Principale)-->
+    <div class="flex-column">
+
+    <app-flat-card title="Utilisateurs" icon="admin_panel_settings" [showCard]="false" [showToggleButton]="true">
+      <div content class="grid-2col">
+
+        <wcs-button (click)="router.navigate(dataService.appRoutes.Admin.Utilisateur.Liste)">
+          Liste des utilisateurs
+        </wcs-button>
+
+        <wcs-button (click)="router.navigate(dataService.appRoutes.Admin.Utilisateur.Ajouter)">
+          Ajouter un utilisateur
+        </wcs-button>
+
+      </div>
+    </app-flat-card>
+
+    </div>
+
+  </div>
+
+</div>
