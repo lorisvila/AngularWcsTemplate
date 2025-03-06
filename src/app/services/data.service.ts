@@ -1,13 +1,4 @@
 import { Injectable } from '@angular/core';
-import {
-  ItemDataType,
-  NewsType,
-  PageType,
-  FilterType,
-  TechnicentreType,
-  AppEnginType,
-  FilterBaseType, SourceType
-} from "../app.types";
 
 @Injectable({
   providedIn: 'root'

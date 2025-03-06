@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormlyFieldConfig} from "@ngx-formly/core";
 import {UntypedFormGroup} from "@angular/forms";
 import {PosteType, RoleType, UserType} from "../../../../../app.types";

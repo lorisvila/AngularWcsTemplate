@@ -1,4 +1,4 @@
-import {Request, Router} from "express";
+import {Router} from "express";
 import { App } from "~/server";
 
 export class BucketInterfaceController {

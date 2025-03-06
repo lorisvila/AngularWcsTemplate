@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {Injectable} from "@angular/core";
 import {Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {DataService} from "../../../../services/data.service";

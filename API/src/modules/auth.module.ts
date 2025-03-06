@@ -1,6 +1,6 @@
 import {App} from "~/server";
 import {Request, Response} from "express";
-import {AuthUsername, PosteType, RequestType, RoleType, UserType} from "~/types/types";
+import {RequestType, RoleType, UserType} from "~/types/types";
 import {VerifyErrors} from "jsonwebtoken";
 import {API_Error} from "~/types/errors";
 import * as jwt from "jsonwebtoken";

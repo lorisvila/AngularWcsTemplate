@@ -1,4 +1,4 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {API_ResponseType, UserType} from "../app.types";
 import {CommunicationService} from "./communication.service";
 import {ToastrService} from "ngx-toastr";
